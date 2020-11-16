@@ -11,6 +11,15 @@ type weatherdiff struct {
 	Data            weatherdiffdata
 }
 
+type weatherdiffdata struct {
+	Temperature float32
+	Pressure    float32
+	Humidity    float32
+	Description string
+	Coordinates weatherdiffdatacoord
+	Wind        weatherdiffdatawind
+}
+
 type weatherdiffdatacoord struct {
 	Latitude  float32
 	Longitude float32
@@ -21,15 +30,7 @@ type weatherdiffdatawind struct {
 	Speed     float32
 }
 
-type weatherdiffdata struct {
-	Temperature float32
-	Pressure    float32
-	Humidity    float32
-	Description string
-	Coordinates weatherdiffdatacoord
-	Wind        weatherdiffdatawind
-}
-
+/* In case of an error, this structure should be used to make a response. */
 type weatherresponserror struct {
 	Status      string
 	Description string
@@ -38,6 +39,14 @@ type weatherresponserror struct {
 /* ----------------------------------------------------------------------- */
 /*                     AccuWeather set of structures                       */
 /* ----------------------------------------------------------------------- */
+/* For searching the location of a city/country pair of parameters */
+type accuweatherpos struct {
+	CityName    string            `json:"EnglishName"`
+	Coordinates accuweathercoord  `json:"GeoPosition"`
+	Country     accuweathercontry `json:"Country"`
+	UID         string            `json:"Key"`
+}
+
 type accuweathercoord struct {
 	Latitude  float32 `json:"Latitude"`
 	Longitude float32 `json:"Longitude"`
@@ -47,11 +56,14 @@ type accuweathercontry struct {
 	Code string `json:"ID"`
 }
 
-type accuweatherpos struct {
-	CityName    string            `json:"EnglishName"`
-	Coordinates accuweathercoord  `json:"GeoPosition"`
-	Country     accuweathercontry `json:"Country"`
-	UID         string            `json:"Key"`
+/* For obtaining data using an UID of the city/country pair of parameters */
+type accuweatherdata struct {
+	MeasureDateTime int64             `json:"EpochTime"`
+	Temperature     accuweathermetric `json:"Temperature"`
+	Pressure        accuweathermetric `json:"Pressure"`
+	Wind            accuweatherwind   `json:"Wind"`
+	Humidity        float32           `json:"RelativeHumidity"`
+	Description     string            `json:"WeatherText"`
 }
 
 type accuweathermetric struct {
@@ -61,15 +73,6 @@ type accuweathermetric struct {
 type accuweatherwind struct {
 	Direction map[string]interface{} `json:"Direction"`
 	Speed     accuweathermetric      `json:"Speed"`
-}
-
-type accuweatherdata struct {
-	MeasureDateTime int64             `json:"EpochTime"`
-	Temperature     accuweathermetric `json:"Temperature"`
-	Pressure        accuweathermetric `json:"Pressure"`
-	Wind            accuweatherwind   `json:"Wind"`
-	Humidity        float32           `json:"RelativeHumidity"`
-	Description     string            `json:"WeatherText"`
 }
 
 /* ----------------------------------------------------------------------- */
