@@ -16,9 +16,9 @@ const dateTimeFormat = "2006/01/02 15:04"
 // A "static" variable to save collected data
 var weatherData weatherdiff
 
-const accuweatherKey = "2ZBnc5Pxf4JSzpenbjrM4ZV7cdRth78B"
-const weatherbitKey = "73db854ec6534fb7b5ab640f94e85ffe"
-const opeweathermapKey = "65b09c748af76ca98abc218d5042d521"
+const accuweatherKey = "xxx"
+const weatherbitKey = "xxx"
+const opeweathermapKey = "xxx"
 
 /* *********************************************************************** */
 /*                          Weather service methodes                       */
